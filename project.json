@@ -15,7 +15,8 @@
         "src/resource.js",
         "src/app.js",
         "src/ccb_test.js",
-        "src/net_test.js"
+        "src/net_test.js",
+        "src/third_part/atmosphere/atmosphere.js"
 
 
     ]

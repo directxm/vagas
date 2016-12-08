@@ -26,29 +26,34 @@ var NetLayer = cc.Layer.extend({
         this.addChild(helloLabel, 5);
 
         // add "HelloWorld" splash screen"
-        this.sprite = new cc.Sprite(res.HelloWorld_png);
+        /*this.sprite = new cc.Sprite(res.HelloWorld_png);
         this.sprite.attr({
             x: size.width / 2,
             y: size.height / 2
         });
-        this.addChild(this.sprite, 0);
+        this.addChild(this.sprite, 0);*/
 
-        /*socket = io('http://localhost/game');
+        // socket.io
+        socket = io.connect('http://localhost:9092');
+
         socket.on('connect', function(){
             cc.log("connect");
         });
-        socket.on('event', function(data) {
-            cc.log("event");
+        socket.on('chatevent', function(data) {
+            cc.log("chatevent" + data);
+            helloLabel.setString("chatevent" + data)
         });
         socket.on('disconnect', function() {
-            cc.log("event");
+            cc.log("disconnect");
         });
         socket.on("message", function(data) {
             cc.log("message received: " + data);
         });
         socket.on("error", function() {
             log("error called..");
-        });*/
+        });
+
+        socket.emit('chatevent', {userName:'111',message:'ssssssss'});
 
         // orgrion
         /*socket = new WebSocket("ws://localhost/game");
@@ -99,6 +104,42 @@ var NetLayer = cc.Layer.extend({
             cc.log("ERROR! " + reason);
             helloLabel.setString("ERROR! " + reason);
         }*/
+
+
+        // atmosphere
+        /*socket = atmosphere;
+        var subSocket;
+        var transport = 'websocket';
+
+        var request = { url: "http://localhost/chat",
+            contentType : "application/json",
+            trackMessageLength : true,
+            shared : true,
+            transport : transport ,
+            fallbackTransport: "long-polling"};
+
+        request.onOpen = function(response) {
+
+        }
+
+        request.onTransportFailure = function(errorMsg, request) {
+
+            if (window.EventSource) {
+                request.fallbackTransport = "sse";
+                transport = "see";
+            }
+        }
+
+        request.onMessage = function (response) {
+
+        }
+
+        request.onClose = function(response) {
+
+        }
+
+        subSocket = socket.subscribe(request);*/
+
 
 
 
